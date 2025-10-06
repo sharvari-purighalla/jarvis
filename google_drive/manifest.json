@@ -1,0 +1,27 @@
+{
+  "name": "google_drive_mcp",
+  "description": "Read-only Google Drive connector that can extract text from all file types.",
+  "version": "0.1.0",
+  "tools": [
+    {
+      "name": "list_drive_files",
+      "description": "List recent Google Drive files.",
+      "parameters": {
+        "limit": {
+          "type": "integer",
+          "description": "Number of files to list."
+        }
+      }
+    },
+    {
+      "name": "read_drive_file",
+      "description": "Read and extract text from a Google Drive file by ID.",
+      "parameters": {
+        "file_id": {
+          "type": "string",
+          "description": "The ID of the file to read."
+        }
+      }
+    }
+  ]
+}

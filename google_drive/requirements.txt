@@ -1,0 +1,9 @@
+google-adk
+dotenv
+elevenlabs
+fpdf2
+praw
+google-auth
+google-auth-oauthlib
+google-api-python-client
+modelcontextprotocol
