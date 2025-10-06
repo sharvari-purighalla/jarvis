@@ -1,5 +1,6 @@
 from __future__ import print_function
 import os, io, mimetypes
+from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
@@ -9,7 +10,9 @@ from docx import Document
 import openpyxl
 from pptx import Presentation
 
-from mcp import Tool
+from mcp import tool
+#from mcp.server.fastapi import FastAPIServer
+import uvicorn
 
 SCOPES = ['https://www.googleapis.com/auth/drive.readonly']
 
@@ -31,7 +34,7 @@ def authenticate():
 
 
 # listing files from gdrive
-@Tool
+@server.tool()
 def list_files(service, limit=10):
     results = service.files().list(
         pageSize=limit, fields="files(id, name, mimeType)"
@@ -43,7 +46,7 @@ def list_files(service, limit=10):
 
 
 # downloading and reading files from gdrive
-@Tool
+@server.tool()
 def download_and_read(service, file_id, mime_type):
     request = service.files().get_media(fileId=file_id)
     fh = io.BytesIO()
